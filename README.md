@@ -36,7 +36,7 @@ To use Genlingo, follow these steps:
 1. Clone this repository to your local machine.
 2. Install the required dependencies by running the following command:
 ```bash
-   pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 3. Launch Genlingo by executing the following command:
 ```bash
