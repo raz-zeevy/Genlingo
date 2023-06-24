@@ -14,6 +14,17 @@ Genlingo is a desktop application developed in Python that allows you to effortl
 - **Efficient Anki Integration**: Exported decks from Genlingo seamlessly integrate with Anki, enabling you to import them into the Anki desktop or mobile app for immediate use. Say goodbye to manual card creation and save valuable study time.
 - **Rich Media Support**: Genlingo supports the inclusion of images in your flashcards. By associating images with vocabulary, you can enhance your memorization process and reinforce visual recognition of words.
 
+## Supported Languages
+Genlingo supports all the most popular languages for learners, including:
+Genlingo supports all the most popular languages for learners, including:
+- :de: German
+- :es: Spanish
+- :fr: French
+- :gb: English
+- :ru: Russian
+- :cn: Chinese
+- :jp: Japanese
+
 ## Screenshots
 ![Example Card: Bread](lib/assets/back-bread.jpg) ![Example Card: Water](lib/assets/back-water.jpg)
 
