@@ -1,7 +1,7 @@
 # Genlingo
 An App that creates language learning decks for Anki
 
-<img src="lib/assets/readme_1.jpg" width="320">
+<img src="lib/assets/readme_1.jpg" width="340">
 
 ## Introduction
 Genlingo is a desktop application developed in Python that allows you to effortlessly create language learning decks for Anki, a popular open-source flashcard program. By leveraging web scraping techniques, Genlingo gathers additional data from the web to enhance your language learning experience. It provides example sentences, images, and word sounds, helping you develop listening skills, stimulate imagination, and understand words in context.
@@ -26,7 +26,7 @@ Genlingo supports various languages for language learners:
 - :israel: Hebrew
 
 ## Screenshots
-![Example Card: Bread](lib/assets/back-bread.jpg) ![Example Card: Water](lib/assets/back-water.jpg)
+<img src="lib/assets/back-bread.jpg" width="280"> <img src="lib/assets/back-water.jpg" width="280">
 
 ## Installation
 To use Genlingo, follow these steps:
