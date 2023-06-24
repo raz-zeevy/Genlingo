@@ -15,15 +15,15 @@ Genlingo is a desktop application developed in Python that allows you to effortl
 - **Rich Media Support**: Genlingo supports the inclusion of images in your flashcards. By associating images with vocabulary, you can enhance your memorization process and reinforce visual recognition of words.
 
 ## Supported Languages
-Genlingo supports all the most popular languages for learners, including:
-Genlingo supports all the most popular languages for learners, including:
+
+Genlingo supports various languages for language learners:
 - :de: German
-- :es: Spanish
 - :fr: French
 - :gb: English
 - :ru: Russian
-- :cn: Chinese
-- :jp: Japanese
+- :es: Spanish
+- :ae: Arabic
+- :il: Hebrew
 
 ## Screenshots
 ![Example Card: Bread](lib/assets/back-bread.jpg) ![Example Card: Water](lib/assets/back-water.jpg)
