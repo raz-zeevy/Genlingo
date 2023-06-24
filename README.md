@@ -26,7 +26,13 @@ Genlingo supports various languages for language learners:
 - :israel: Hebrew
 
 ## Screenshots
-<img src="lib/assets/back-bread.jpg" width="270"> <img src="lib/assets/back-water.jpg" width="270">
+Screenshot 1: Back of a Bread Flashcard (German target language)
+<img src="lib/assets/back-bread.jpg" width="270">
+
+Screenshot 2: Back of a Water Flashcard (German target language)
+<img src="lib/assets/back-water.jpg" width="270">
+
+Please note that the screenshots above demonstrate flashcards for the German language, with the target language being German and the native language being Hebrew.
 
 ## Installation
 To use Genlingo, follow these steps:
