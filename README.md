@@ -1,4 +1,4 @@
-# Genlingo
+# Genlingo <img src="lib/assets/icon.png" alt="Genlingo Logo" width="30">
 An app that creates language learning decks for Anki
 
 <img src="lib/assets/readme_1.jpg" width="340">
