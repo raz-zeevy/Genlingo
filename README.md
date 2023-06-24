@@ -1,5 +1,5 @@
 # Genlingo
-An App that creates language learning decks for Anki
+An app that creates language learning decks for Anki
 
 <img src="lib/assets/readme_1.jpg" width="340">
 
