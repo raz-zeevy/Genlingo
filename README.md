@@ -22,8 +22,8 @@ Genlingo supports various languages for language learners:
 - :gb: English
 - :ru: Russian
 - :es: Spanish
-- :ae: Arabic
-- :il: Hebrew
+- :saudi_arabia: Arabic
+- :israel: Hebrew
 
 ## Screenshots
 ![Example Card: Bread](lib/assets/back-bread.jpg) ![Example Card: Water](lib/assets/back-water.jpg)
