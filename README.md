@@ -26,7 +26,7 @@ Genlingo supports various languages for language learners:
 - :israel: Hebrew
 
 ## Screenshots
-<img src="lib/assets/back-bread.jpg" width="280"> <img src="lib/assets/back-water.jpg" width="280">
+<img src="lib/assets/back-bread.jpg" width="270"> <img src="lib/assets/back-water.jpg" width="270">
 
 ## Installation
 To use Genlingo, follow these steps:
