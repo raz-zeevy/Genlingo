@@ -13,8 +13,6 @@ import lib.const as const
 
 p_JPG_NAME_CONV = '000001.jpg'
 p_PNG_NAME_CONV = '000001.png'
-const.p_IMAGES = 'images'
-
 
 class Note():
     def __init__(self, lang, word, no_audio=False, no_image=False):
@@ -43,9 +41,9 @@ class Note():
 
     def word_clean(self, input_word):
         word = input_word.replace("\n", '')
-        if word[0] == '^':
+        if word.startswith(const.REV_TOKEN):
             self.reverse = True
-            word = word[1:]
+            word = word.lstrip(const.REV_TOKEN)
         while word[-1] == ' ': word = word[:-1]
         return word
 
@@ -60,7 +58,7 @@ class Note():
         a = random.randint(100, 1000)
         folder_path = const.p_AUDIO
         if not os.path.isdir(folder_path):
-            os.mkdir(folder_path)
+            os.makedirs(folder_path)
         path = folder_path + "/" + unidecode.unidecode(
             myText.replace(" ", '_')).lower() + f'_{a}' + ".mp3"
         output = gTTS(text=myText, lang=language, slow=False)
