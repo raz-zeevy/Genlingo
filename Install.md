@@ -60,6 +60,8 @@ pip install ttkbootstrap
 
 You're now ready to run Genlingo:
 
+Run the `run.bat` file directly or execute the following command:
+
 ```bash
 python genlingo.py
 ```

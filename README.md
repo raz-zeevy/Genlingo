@@ -39,6 +39,8 @@ To use Genlingo, follow these steps:
 ```bash
 python genlingo.py
 ```
+or by running the `run.bat` file directly.
+
 For detailed installation instructions, please refer to the [Installation Guide](install.md).
 
 ## Contributing
