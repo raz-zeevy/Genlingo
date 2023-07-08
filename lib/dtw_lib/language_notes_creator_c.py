@@ -1,4 +1,5 @@
 import os, random, time
+from os.path import exists
 from googletrans import Translator
 import unidecode
 from pyppeteer import launch
@@ -17,14 +18,16 @@ const.p_IMAGES = 'images'
 
 
 class Note():
-    def __init__(self, lang, word, no_audio=False, no_image=False):
+    def __init__(self, lang, word, no_audio=False, no_image=False, tips=None):
         self.lang = pycountry.languages.get(name=lang)
         self.lang_pre = self.lang.alpha_2
         if not self.lang: raise Exception("LanguageDoesntExist")
         self.reverse = False
         self.word = self.word_clean(word)
         self.en_trans = ''
+        self.img_path = ''
         self.trans = self.get_trans()
+        self.tips = tips if tips else ""
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         self.sentences = loop.run_until_complete(self.fetch_sentences())
@@ -37,6 +40,11 @@ class Note():
                 self.img_path = self.text_to_image()
             except TypeError:
                 self.img_path = ''
+        else:
+            img_path = os.path.join(const.p_IMAGES, self.word.replace(' ',
+                                            '_') + '.png')
+            if exists(img_path):
+                    self.img_path = img_path
 
     def __repr__(self):
         return f'"{self.word}","{self.trans}","{self.sentences}","added"'
@@ -128,7 +136,7 @@ class Note():
             handleSIGHUP=False
         )
         page = await browser.newPage()
-        page.setDefaultNavigationTimeout(50000)
+        page.setDefaultNavigationTimeout(10000)
         try:
             await page.goto(url + parsed_word)
             content = await page.content()
@@ -138,7 +146,8 @@ class Note():
             examples = []
         word_sentences = ''
         if len(examples) == 0:
-            print('No found sentences for -')
+            print('No found sentences for -', self.word)
+            await browser.close()
             return word_sentences
         for i, example in enumerate(examples):
             text = example.find_all('span', {'class': 'text'})
@@ -168,9 +177,8 @@ def get_notes(lang, words, no_audio=False, check_dups_in=None):
             word_type = 'regular' if not new_note.reverse else 'reverse'
             print(f'created {word_type} note for "{new_note.word}"')
         except Exception as e:
-            # raise e
+            raise e
             print(f'couldn\'t create note for {word} because: "{e}"')
-            quit()
     return {'notes': notes, 'added': len(notes), 'existing': len(exist_words)}
 
 

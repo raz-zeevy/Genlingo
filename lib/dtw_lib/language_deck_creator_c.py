@@ -1,6 +1,6 @@
 import genanki
 import random
-import lib.language_card_templates as templates
+import lib.dtw_lib.language_card_templates_c as templates
 from lib.language_notes_creator import get_notes
 import os
 import datetime
@@ -19,12 +19,13 @@ class Deck:
             get_id(),
             deck_name)
         self.model = genanki.Model(
-            314159261,
-            f'{language.capitalize()} essential words deck - Import"',
+            314159262,
+            f'{language.capitalize()} German Words',
             css= templates.get_style(),
             fields=[
                 {'name': 'Frequency Rank'},
                 {'name': language.capitalize()},
+                {'name': "Tips"},
                 {'name': 'English (Simplified Translation)'},
                 {'name': 'Example Sentences (Translation)'},
                 {'name': 'Example Sentences'},
@@ -51,7 +52,7 @@ class Deck:
                     tags=['added'],
                     model=self.model,
                     fields=[str(i) +'_reverse',
-                            note.trans, note.word,note.sentences,
+                            note.trans, note.tips, note.word,note.sentences,
                             '', '',
                             f'[sound:{os.path.basename(note.audio_path)}]',
                             image_path])
@@ -60,7 +61,7 @@ class Deck:
                     tags=['added'],
                     model=self.model,
                     fields=[str(i),
-                            note.word, note.trans, note.sentences,
+                            note.word, note.tips, note.trans, note.sentences,
                             '','',
                             f'[sound:{os.path.basename(note.audio_path)}]',
                             image_path])
@@ -81,9 +82,9 @@ class Deck:
         print(f'"{self.name}.apkg" created with {len(self.data)} notes')
 
     @classmethod
-    def generate_deck(cls, words, language, name):
+    def generate_deck(cls, words, language):
         date = datetime.datetime.now().strftime('%m %d')
-        deck_name = f'{language.capitalize()} {name} {date}'
+        deck_name = f'{language.capitalize()} Essential Words {date}'
         notes = get_notes(language, words)['notes']
         lang_deck = cls(deck_name,data=notes,language=language)
         lang_deck.export()

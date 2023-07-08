@@ -31,7 +31,8 @@ class Controller():
             return
         words = []
         for row in input_words.split('\n'):
-            row = row.split('-')[0]
+            # remove "-"'s
+            # row = row.split('-')[0]
             for char in ['[','?','!','(','.','+']:
                 if char in row:
                     row = row.split(char)[0]
@@ -49,19 +50,24 @@ class Controller():
                 Timer(TIMER_INTERVAL, check_deck_created).start()
                 if timer < len(self.words)-1: timer += 1
             else:
-                words, name = self.current_t.join()
-                self.gui.update_meter(used=len(self.words))
-                self.gui.show_msg(const.DeckCreationSuccess, words=words,
-                                  name=name)
-                delete_folders()
-                self.update_words(None)
+                try:
+                    words, name = self.current_t.join()
+                    self.gui.update_meter(used=len(self.words))
+                    self.gui.show_msg(const.DeckCreationSuccess, words=words,
+                                      name=name)
+                except Exception as e:
+                    self.gui.show_msg(e)
+                finally:
+                    delete_folders()
+                    self.update_words(None)
 
         if not self.words: return
         self.gui.creat_btn.state(["disabled"])
         timer = 0
         lang = self.gui.lang_picker.get()
+        name = self.gui.deck_name_entry.get()
         try:
-            self.current_t = generate_deck_in_bg(self.words, lang)
+            self.current_t = generate_deck_in_bg(self.words, lang, name)
         except Exception as e:
             self.gui.show_msg(e)
         self.gui.update_meter(used = timer, strip=5)

@@ -4,21 +4,24 @@ import lib.const as const
 from tkinter import messagebox
 import os
 
-t_ENTRY_LABEL = 'Insert phrases/words delimited by a row: '
-
+t_ENTRY_LABEL = 'Insert phrpychases/words delimited by a row: '
+DEFAULT_DECK_NAME = 'New Words'
 p_ASSETS = r'lib\assets'
 
+WINDOW_WIDTH = 435
+WINDOW_HEIGHT = 380
 y_l_ENTRY = 10
 x_l_ENTRY = 25
 y_ENTRY = 35
 x_ENTRY = 25
 x_SIDE = 300
-y_BOTTOM = 300
-y_PRS_WRDS_BTN = 70
+y_BOTTOM = 335
+y_PRS_WRDS_BTN = 75
 x_PRS_WRDS_BTN = x_SIDE + 5
 y_WORD_PICKER = 120
 x_CREATE_DCK_BTN = 70
 y_CREATE_DCK_BTN = y_BOTTOM
+y_DECK_NAME = y_BOTTOM-35
 s_METER = 120
 y_WORD_METER = 170
 x_WORD_METER = x_SIDE - 10
@@ -35,7 +38,7 @@ class GUI():
         # logo = tk.PhotoImage(file=os.path.join(p_ASSETS,"icon.gif"))
         # self.root.call('wm', 'iconphoto', '354x44',logo)
         self.root.wm_iconbitmap(bitmap=os.path.join(p_ASSETS, 'icon.ico'))
-        self.root.geometry('435x360')
+        self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
         self.root.title('Genlingo')
         self.draw_frame(self.root)
 
@@ -57,6 +60,19 @@ class GUI():
                                     width=25)
         self.creat_btn.place(x=x_CREATE_DCK_BTN, y=y_CREATE_DCK_BTN)
         self.creat_btn.state(["disabled"])
+        # Deck Name Entry
+        self.deck_name_entry = tk.Entry(master, width=w_ENTRY-10,
+                                        font=f_ENTRY,
+                                        bg='white', fg='black',
+                                        highlightbackground='black',
+                                        highlightcolor='black',
+                                        highlightthickness=5)
+        self.deck_name_entry.place(x=x_ENTRY+90, y=y_DECK_NAME)
+        self.deck_name_entry.insert(0, DEFAULT_DECK_NAME)
+        # Deck Name Label
+        self.l_deck_name = ttk.Label(master, text="Deck Name:",
+                                        font=f_ENTRY_lABLE)
+        self.l_deck_name.place(x=x_l_ENTRY, y=y_DECK_NAME)
         # Words Meter
         self.word_meter = ttk.Meter(bootstyle="info", metersize=s_METER,
                                     textfont='-size 15 -weight bold',

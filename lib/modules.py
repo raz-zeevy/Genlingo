@@ -34,8 +34,9 @@ class ThreadWithReturnValue(Thread):
         Thread.join(self, *args)
         return self._return
 
-def generate_deck_in_bg(words, lang):
+def generate_deck_in_bg(words, lang, name):
         global current_t
         current_t = ThreadWithReturnValue(target=Deck.generate_deck, args=(words,
-                                                                     lang,))
+                                                                     lang,
+                                                                     name,))
         return current_t
