@@ -1,9 +1,0 @@
-Dependencies:
-google trans:
-install google trans:
-pip install googletrans==4.0.0-rc1
----
-ttboostrap:
-install via python -m pip install
-git+https://github.com/israel-dryer/ttkbootstrap
-if _get_default_root creates import errror, it can be commented

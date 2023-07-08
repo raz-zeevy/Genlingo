@@ -34,14 +34,12 @@ The screenshots above demonstrate flashcards for the German language, with the t
 To use Genlingo, follow these steps:
 
 1. Clone this repository to your local machine.
-2. Install the required dependencies by running the following command:
-```bash
-pip install -r requirements.txt
-```
+2. Install the required dependencies specified in [Installation Guide](install.md).
 3. Launch Genlingo by executing the following command:
 ```bash
 python genlingo.py
 ```
+For detailed installation instructions, please refer to the [Installation Guide](install.md).
 
 ## Contributing
 Contributions to Genlingo are welcome! If you would like to contribute, please follow these guidelines:
