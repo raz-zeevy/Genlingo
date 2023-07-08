@@ -53,7 +53,7 @@ Contributions to Genlingo are welcome! If you would like to contribute, please f
 Genlingo is released under the [MIT License](LICENSE).
 
 ## Acknowledgments
-We would like to express our gratitude to the Anki project for their exceptional flashcard software. Genlingo leverages the power of Anki to provide a seamless language learning experience.
+I would like to express My gratitude to the Anki project for their exceptional flashcard software. Genlingo leverages the power of Anki to provide a seamless language learning experience.
 
 ## Contact
 For any inquiries or support requests, please reach out to me at [raz3zeevy@gmail.com](mailto:raz3zeevy@gmail.com).
