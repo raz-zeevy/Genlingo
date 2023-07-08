@@ -13,8 +13,10 @@ def get_lang_list():
     return [lang.name for lang in langs if lang.alpha_3 in supported_languages]
 
 def delete_folders():
-    shutil.rmtree(const.p_IMAGES)
-    shutil.rmtree(const.p_AUDIO)
+    if os.path.exists(const.p_IMAGES):
+        shutil.rmtree(const.p_IMAGES)
+    if os.path.exists(const.p_AUDIO):
+        shutil.rmtree(const.p_AUDIO)
 
 def open_decks_folder():
     if not os.path.isdir(const.p_OUTPUT_FOLDER):
