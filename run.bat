@@ -1,3 +1,2 @@
 @echo off
-CALL venv\Scripts\activate
-py app.py
+start "Genlingo" venv\Scripts\pythonw.exe app.pyw

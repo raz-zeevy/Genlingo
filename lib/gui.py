@@ -4,9 +4,6 @@ import lib.const as const
 from tkinter import messagebox
 import os
 
-s_WORD_METER = 15
-pxs_WORD_METER = s_WORD_METER * 8
-
 t_ENTRY_LABEL = 'Insert phrases/words delimited by a row'
 DEFAULT_DECK_NAME = 'New Words'
 f_ICON = 'icon.ico'
@@ -14,13 +11,13 @@ p_ASSETS = r'lib\assets'
 ROOT_TITLE = 'Genlingo'
 
 # fonts
-f_MAIN_lABLE = ("Arial-BoldMT", int(11.0))
-f_ENTRY_lABLE = ("Arial-BoldMT", int(11.0), "bold")
+f_MAIN_lABLE = ("Arial-BoldMT", int(11.0), "bold")
+f_ENTRY_lABLE = ("Arial-BoldMT", int(11.0))
 f_ENTRY = ("Arial-BoldMT", int(11.0))
 
 # General Sizes
 WINDOW_WIDTH = 700
-WINDOW_HEIGHT = 420
+WINDOW_HEIGHT = 440
 x_SIDE = 580
 y_BOTTOM = 380
 
@@ -33,15 +30,17 @@ y_WRD_ENTRY = 75
 size_ENTRY = w_ENTRY * 8.5
 x_LFT_WRD_ENTRY = x_MAIN_LBL
 x_RT_WRD_ENTRY = x_LFT_WRD_ENTRY + size_ENTRY + 10
-t_RIGHT_ENTRY_LBL = "Target \u2192 Native"
-t_LFT_ENTRY_LBL = "Native \u2192 Target"
+# t_RIGHT_ENTRY_LBL = "Target \u2192 Native"
+t_RIGHT_ENTRY_LBL = "Reverse Card"
+# t_LFT_ENTRY_LBL = "Native \u2192 Target"
+t_LFT_ENTRY_LBL = "Regular Card"
 x_LFT_WRD_ENTRY_LBL = x_LFT_WRD_ENTRY + size_ENTRY / 2 - len(
     t_LFT_ENTRY_LBL) * 4.5
 x_RT_WRD_ENTRY_LBL = x_RT_WRD_ENTRY + size_ENTRY / 2 - len(
     t_RIGHT_ENTRY_LBL) * 4.5
 h_WORD_ENTRY = 14
 # Bottom Panel
-x_CREATE_DCK_BTN = x_SIDE / 2 - 100
+x_CREATE_DCK_BTN = x_SIDE / 2 - 70
 y_CREATE_DCK_BTN = y_BOTTOM
 CREATE_DECK_BTN_w = 25
 #
@@ -52,8 +51,13 @@ y_DECK_NAME = y_BOTTOM-35
 x_DECK_NAME_ENTRY = x_CREATE_DCK_BTN + len(t_DECK_NAME_LBL) * 5 + 5
 w_DECK_NAME_ENTRY = w_ENTRY - 10
 # Side Panel
+y_DECK_FOLDER = 15
+x_DECK_FOLDER = x_SIDE + 80
+#
 y_LANG_PICKER = 120
 #
+s_WORD_METER = 15
+pxs_WORD_METER = s_WORD_METER * 8
 y_WORD_METER = 170
 y_CLEAR_BTN = y_WORD_METER + pxs_WORD_METER + 10
 x_WORD_METER = x_SIDE - 10
@@ -65,10 +69,31 @@ x_PARSE_WRDS_BTN = x_SIDE + 5
 class GUI():
     def __init__(self):
         self.root = tk.Tk()
+        self.root.resizable(False, False)
         self.root.wm_iconbitmap(bitmap=os.path.join(p_ASSETS, f_ICON))
         self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
         self.root.title(ROOT_TITLE)
         self.draw_frame(self.root)
+        ttk.Style().theme_use('superhero')
+        self.menu()
+
+    def menu(self):
+        # Create a menu bar
+        menubar = tk.Menu(self.root)
+        self.root.config(menu=menubar)
+
+        # Create a "Settings" menu dropdown
+        options_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Options", menu=options_menu)
+
+        # Add menu items to the "Settings" dropdown
+        options_menu.add_command(label="Change to Night Mode", )
+        options_menu.add_command(label="Set Target Language",)
+
+        info_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Info", menu=info_menu)
+        # Add an "Info" menu item
+        info_menu.add_command(label="About",)
 
     def draw_frame(self, master):
         """
@@ -106,6 +131,26 @@ class GUI():
         self.rev_word_entry.place(x=x_RT_WRD_ENTRY, y=y_WRD_ENTRY)
 
 
+    def draw_folder_btn(self):
+        self.deck_folder_img = tk.PhotoImage(
+            file=os.path.join(p_ASSETS, "open_folder.png"))
+        folder_button = tk.Button(
+            image=self.deck_folder_img,
+            text='',
+            compound='center',
+            borderwidth=0,
+            highlightthickness=0,
+            bg='white',
+            fg='white',
+            relief='flat'
+            )
+        folder_button.place(
+            x=x_DECK_FOLDER, y=y_DECK_FOLDER,
+            width=24,
+            height=22
+        )
+        return folder_button
+
     def draw_side_panel(self, master):
         """Side Panel: Language Picker, Word Meter, Parse Words Button"""
         # parse button
@@ -117,20 +162,7 @@ class GUI():
         self.lang_picker = self.draw_lang_picker(x=x_SIDE, y=y_WORD_METER,
                                                  value='asd')
         # open deck folder
-        self.deck_folder_img = tk.PhotoImage(
-            file=os.path.join(p_ASSETS, "open_folder.png"))
-        self.deck_folder = tk.Button(
-            image=self.deck_folder_img,
-            text='',
-            compound='center',
-            fg='white',
-            borderwidth=0,
-            highlightthickness=0,
-            relief='flat')
-        self.deck_folder.place(
-            x=x_SIDE + 90, y=15,
-            width=24,
-            height=22)
+        self.deck_folder = self.draw_folder_btn()
         # Words Meter
         self.word_meter = ttk.Meter(bootstyle="info", metersize=s_METER,
                                     textfont=(f'-size {s_WORD_METER}'
@@ -173,7 +205,7 @@ class GUI():
                          x_offset=15):
         self.root.option_add("*TCombobox*Listbox*Font", f_ENTRY)
         combobox = ttk.Combobox(self.root, bootstyle="info", width=width,
-                                font=f_MAIN_lABLE, state="readonly")
+                                font=f_ENTRY, state="readonly")
         combobox['values'] = values
         combobox.place(x=x_SIDE, y=y_LANG_PICKER, width=width - x_offset,
                        height=height - y_offset)

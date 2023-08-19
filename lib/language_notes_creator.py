@@ -47,6 +47,12 @@ class Note():
         while word[-1] == ' ': word = word[:-1]
         return word
 
+    def safe_word_name(self):
+        safe_name = unidecode.unidecode(self.word.replace(" ", '_')).lower()
+        for char in ["/",":","?","*","\\",'"',"<",">","|"]:
+            safe_name = unidecode.unidecode(safe_name.replace(char, ''))
+        return safe_name
+
     def text_to_speech(self):
         '''
         Could raise problems with the token, might need occasional
@@ -59,14 +65,13 @@ class Note():
         folder_path = const.p_AUDIO
         if not os.path.isdir(folder_path):
             os.makedirs(folder_path)
-        path = folder_path + "/" + unidecode.unidecode(
-            myText.replace(" ", '_')).lower() + f'_{a}' + ".mp3"
+        path = os.path.join(folder_path, self.safe_word_name() + ".mp3")
         output = gTTS(text=myText, lang=language, slow=False)
         output.save(path)
         return path
 
     def text_to_image(self):
-        path = os.path.join(const.p_IMAGES, self.word)
+        path = os.path.join(const.p_IMAGES, self.safe_word_name())
         google_crawler = GoogleImageCrawler(storage={'root_dir': path})
         # Can be added if wanted
         filters = dict()
